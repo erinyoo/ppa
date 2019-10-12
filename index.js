@@ -4,8 +4,7 @@ const bmi = require('./functions/bmi'),
 	shortestDistance = require('./functions/shortestdistance'),
 	prompts = require('prompts');
 
-const express = require('express'),
-	MongoClient = require('mongodb').MongoClient;
+const express = require('express');
 
 const routes = require('./routes/routes.js'),
 	port = process.env.SERVERPORT || 5000,
@@ -14,7 +13,21 @@ const routes = require('./routes/routes.js'),
 console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
 console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\nS - Shortest Distance Calculator\nQ - Exit application');
 
-app.use('', routes);
+app.use(routes);
+
+app.use(function (req, res, next) {
+	res.sendFile(__dirname + '/main.html');
+});
+
+app.use(function (req, res, next) {
+	res.status(404).send("Sorry, cannot find this page")
+});
+
+app.use(function (err, req, res, next) {
+	console.log(err.stack);
+	res.status(500).send('Something broke: ' + err);
+});
+
 var server = app.listen(port);
 console.log('Application also listening on port ' + port);
 

@@ -1,9 +1,16 @@
 var express = require ('express')
 var router = express.Router()
 
-router.get('/', function(req, res) {
-    console.log('GET to /');
-    res.send('PPA')
+router.get('/bmi', function(req, res) {
+});
+
+router.get('/distance', function(req, res) {
+});
+
+router.post('/bmi', function(req, res) {
+});
+
+router.post('/distance', function(req, res) {
 });
 
 module.exports = router

@@ -1,66 +1,23 @@
-# Professional Practice Assignment #1
+# Professional Practice Assignment
 ## By Erin Yoo
-Intro to Unit Testing &amp; T/BDD
+Using previously written code/functions from PPA#1 to store inputs and outputs in MongoDB which is spun up using Docker. Then usage of TravisCI to build personal continuous integration pipeline with build and test phases.
 
 ## Functions
-Functions implemented in this PPA were:
+These functions were implemented in PPA#1, adding a few functionalities to BMI and Shortest Distance.
  - **Body Mass Index**
-    - Input height in feet and inches. Input weight in pounds.
-    - Returns BMI value and category: 
-        - Underweight = <18.5
-        - Normal weight ! = 18.5–24.9
-        - Overweight = 25–29.9
-        - Obese = BMI of 30 or greater 
-    - Converts height and weight to metric values for the formula
+   - Added ability to send input and ouput to MongoDB
  - **Retirement**
-    - Input user's current age, annual salary, percentage saved (employer matches 35% of savings). Input desired retirement savings goal.
-    - Return what age savings goal will be met.
-    - You can assume death at 100 years (therefore, indicate if the savings goal is not met).
  - **Shortest Distance**
-    - Input two points (x1, y1) (x2, y2) [4 values - indicate to user which values are being input]
-    - Return the distance between the points using the distance formula (should be implemented without use of libraries with the exception of the square root function).
+   - Added ability to send input and output to MongoDB
  - **Email Verifier**
-    - Input a string, determine if it is a valid email address according to these stated requirements with required caveats:
-        - Value entered can consist of text, optionally separated by periods. 
-        - No periods can start or end the value entered.
-        - Two periods together is invalid and the address must start with a non-numeric character.
-        - Value entered can contain the following printable characters: !$%*+-=?^_{|}~ but not: "(),:;<>@[\]` (this function provides a good opportunity to use regular expressions).
 
-## Naming & Organizational Content
-Given the JavaScript general language conventions, I followed general rules for naming variables. In addition, I attempted to name variables as descriptively as possible for future code readers.
-
-Given the Jest framework, I followed general conventions from the documentation provided. Grouping tests together using `describe` and using `it` for the sub-tests.
-
-The project folder is set up as such to help distinguish between the functions and the tests. They all are under the root folder as they're a part of the project.
-```
-ppa1 (root)
-|
-|____functions
-      |
-      |____bmi.js
-      |
-      |____emailverifier.js
-      |
-      |____retirement.js
-      |
-      |____shortestdistance.js
-|
-|____tests
-      |
-      |____bmi.test.js
-      |
-      |____emailverifier.test.js
-      |
-      |____retirement.test.js
-      |
-      |____shortestdistance.test.js
-|
-|____index.js
-|
-|____README.md
-|
-|____package.json
-```
+ ## Routes
+ Any other endpoints hit will return a 404 Error.
+  - **/ GET** - will return a JSON of the possible endpoints you can hit
+  - **/bmi POST** - sent in the correct values of #, #, #, the calculator will use the feet in height, inches in height, and weight respectively and return the results in JSON
+  - **/bmi GET** - will return all the values that are currently stored in MongoDB
+  - **/distance POST** - sent in correct values of #, #, #, #, the calculator will use x1, y1, x2, y2, respectively and return the results in JSON
+  - **/distance GET** - will return all values that are currently stored in MongoDB
 
 ## Setup
 To begin, ensure that you have NodeJS and npm installed in your environment.
@@ -77,9 +34,3 @@ After installation of correct NodeJS and npm versions, proceed to the root direc
 To execute the program itself, at the root directory run `node index.js` and continue to answer the prompts on the console.
 
 To execute the test suite, run `npm test` at the root project folder and Jest should begin running with coverage.
-
-## Test Coverage & Tests Passing Report
-![testing](/ppa1/Test%20Coverage.PNG)
-
-## General Experience
-Unit testing and TDD is different from typical coding you might perform during school projects. Testing is often seen as an afterthought. Working with unit tests and TDD I found myself coding more efficiently. By thinking about the tests first and the possibilities of failure in the function, I identified many edge cases and accounted for them while coding. It made me more aware of why each line of code was being written. It's definitely a practice that I find realistic, feasible, and helpful for a real coding environment. There may be some issues to unit testing and TDD as it's easy to MAKE the tests pass themselves. It's a very surface-level test which may give a false level of confidence.

@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>PPA</title>
+    </head>
+    <body>
+        <h1>PPA Endpoint Information</h1>
+
+        <h2>GET /bmi</h2>
+            <p><b>No required params</b></p>
+            <p>Will return all inputs and outputs stored in MongoDB in JSON format</p>
+        <h2>POST /bmi</h2>
+            <p><b>Required Params</b></p>
+            <table style="width:50%; text-align:center">
+                <tr>
+                    <th>KEY</th>
+                    <th>VALUE TYPE</th>
+                </tr>
+                <tr>
+                    <td>feet</td>
+                    <td>Number</td>
+                </tr>
+                <tr>
+                    <td>inches</td>
+                    <td>Number</td>
+                </tr>
+                <tr>
+                    <td>weight</td>
+                    <td>Number</td>
+                </tr>
+            </table>
+            <p>Will return the inputs and calculated outputs that have been stored in MongoDB in JSON format</p>
+        <h2>GET /distance</h2>
+            <p><b>No required params</b></p>
+            <p>Will return all inputs and outputs stored in MongoDB in JSON format</p>
+        <h2>POST /distance</h2>
+            <p><b>Required Params</b></p>
+            <table style="width:50%; text-align:center">
+                <tr>
+                    <th>KEY</th>
+                    <th>VALUE TYPE</th>
+                </tr>
+                <tr>
+                    <td>x1</td>
+                    <td>Number</td>
+                </tr>
+                <tr>
+                    <td>y1</td>
+                    <td>Number</td>
+                </tr>
+                <tr>
+                    <td>x2</td>
+                    <td>Number</td>
+                </tr>
+                <tr>
+                    <td>y2</td>
+                    <td>Number</td>
+                </tr>
+            </table>
+            <p>Will return the inputs and calculated outputs that have been stored in MongoDB in JSON format</p>
+    </body>
+</html>
