@@ -1,9 +1,7 @@
 [![Build Status](https://travis-ci.org/erinyoo/ppa.svg?branch=master)](https://travis.ci.org/erinyoo/ppa)
 # Professional Practice Assignment
 ## By Erin Yoo
-Using previously written code/functions from PPA#1 to store inputs and outputs in MongoDB which is spun up using Docker. Then usage of TravisCI to build personal continuous integration pipeline with build and test phases.
-
-
+Using previously written code from PPA#1 to create a full-blown web-application. Application stores certain function inputs and outputs into local MongoDB cluster that is spun up using Docker.
 
 ## Functions
 These functions were implemented in PPA#1, adding a few functionalities to BMI and Shortest Distance.
@@ -34,13 +32,10 @@ If you do not have the correct version of Node, go [here](https://www.hostingadv
 After installation of correct NodeJS and npm versions, proceed to the root directory of the project and run `npm i` to retrieve all necessary dependencies.
 
 ## Execution
-
-### Local
-To execute the program locally, navigate to the root directory and run `node index.js`.
- - Once application has started you can use the console to answer the prompts questions and get the necessary calculations for your options.
- - Using the console will also store all of your inputs and outputs into the database as well.
- - The application can be used using web API as well which can be found on `localhost:5000`.
-
-To execute the program itself, at the root directory run `node index.js` and continue to answer the prompts on the console.
-
-To execute the test suite, run `npm test` at the root project folder and Jest should begin running with coverage.
+Clone this repository onto local computer.  
+1. Run this command first in a separate tab or window of your console:
+  - `docker-compose up`
+2. Now run this command in a separate and new console while your first command is still running:
+  - `node index.js`
+3. If no errors appear on console, the application is running in your console as well as `localhost:5000`
+4. To execute the test suite, run `npm test` at the root project folder and Jest should run with coverage

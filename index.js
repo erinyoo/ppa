@@ -93,6 +93,9 @@ console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\n
 			message: 'What function would you like to execute?'
 		});
 		if(response.choice === "B" || response.choice === "b") {
+			BMI.find().exec(function(err, docs) {
+				console.log('\n' + docs + '\r');
+			});
 			console.log('Beginning BMI Calculator');
 			const bmiPrompts = [
 				{ type: 'number',
@@ -157,6 +160,9 @@ console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\n
 				console.log('Goal met at age ' + age);
 			}
 		} else if (response.choice === "S" || response.choice === "s") {
+			BMI.find().exec(function(err, docs) {
+				console.log('\n' + docs + '\r');
+			});
 			console.log('Beginning Shortest Distance Calculator');
 			const coordinatePrompts = [
 				{ type: 'number',
