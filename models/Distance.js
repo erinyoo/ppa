@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var DistanceSchema = new Schema({
-    code: { type: String, required: true },
     inputs: {
         x1: { type: Number, required: true },
         y1: { type: Number, required: true },

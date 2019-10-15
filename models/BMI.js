@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var BMISchema = new Schema({
-    code: { type: String, required: true },
     inputs: {
         height_feet: { type: Number, required: true },
         height_inches: { type: Number, required: true },
