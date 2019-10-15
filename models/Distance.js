@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var DistanceSchema = new Schema({
+    code: { type: String, required: true },
     inputs: {
         x1: { type: Number, required: true },
         y1: { type: Number, required: true },
@@ -12,6 +13,11 @@ var DistanceSchema = new Schema({
         distance: { type:Number, required:true }
     },
     created_at: Date
+});
+
+DistanceSchema.pre('save', function(next) {
+    this.created_at = Date.now;
+    next();
 });
 
 var DistanceModel = mongoose.model('DistanceModel', DistanceSchema);

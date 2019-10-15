@@ -1,35 +1,68 @@
 const bmi = require('./functions/bmi'),
 	emailVerifier = require('./functions/emailverifier'),
 	retirement = require('./functions/retirement'),
-	shortestDistance = require('./functions/shortestdistance'),
-	prompts = require('prompts');
+	shortestDistance = require('./functions/shortestdistance');
 
-const express = require('express');
+const express = require('express'),
+	prompts = require('prompts'),
+	mongoose = require('mongoose');
 
-const routes = require('./routes/routes.js'),
-	port = process.env.SERVERPORT || 5000,
+const port = process.env.PORT || 5000,
 	app = express();
 
-console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
-console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\nS - Shortest Distance Calculator\nQ - Exit application');
+var BMI = require('./models/BMI.js'),
+	Distance = require('./models/Distance.js');
 
-app.use(routes);
+mongoose.connect("mongodb://0.0.0.0:27017/ppa", { useUnifiedTopology: true, useNewUrlParser: true });
 
-app.use(function (req, res, next) {
+app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/main.html');
 });
 
-app.use(function (req, res, next) {
-	res.status(404).send("Sorry, cannot find this page")
+app.get('/bmi', function(req, res) {
+	BMI.find().sort('code').exec(function(err, bmis) {
+		if(err) res.status(400).send(err);
+		else res.json(bmis);
+	});
 });
 
-app.use(function (err, req, res, next) {
-	console.log(err.stack);
-	res.status(500).send('Something broke: ' + err);
+app.get('/distance', function(req, res) {
+	res.send('DISTANCE GET');
+});
+app.post('/bmi', function(req, res) {
+	var bodyMass = new BMI();
+	bodyMass.code = "BMI";
+	bodyMass.inputs = {
+		height_feet: req.body.feet,
+		height_inches: req.body.inches,
+		weight: req.body.weight
+	};
+	bodyMass.outputs = {
+		bmi_index: bmi(req.body.feet, req.body.inches, req.body.weight).number,
+		bmi_classification: bmi(req.body.feet, req.body.inches, req.body.weight).category
+	};
+	bodyMass.created_at = Date.now();
+
+	bodyMass.save(function(err) {
+		if(err) {
+			res.status(400).send(err);
+		} else {
+			res.json(bodyMass);
+		}
+	});
+});
+app.post('/distance', function(req, res) {
+	res.send('DISTANCE POST');
 });
 
-var server = app.listen(port);
-console.log('Application also listening on port ' + port);
+var server;
+async function startServer() {
+	server = app.listen(port);
+}
+startServer().then(console.log('Server is running on port ' + port));
+
+console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
+console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\nS - Shortest Distance Calculator\nQ - Exit application');
 
 (async () => {
   	while (true) {
@@ -41,24 +74,34 @@ console.log('Application also listening on port ' + port);
 		if(response.choice === "B" || response.choice === "b") {
 			console.log('Beginning BMI Calculator');
 			const bmiPrompts = [
-				{
-					type: 'number',
+				{ type: 'number',
 					name: 'feet',
-					message: 'How many feet in your height?'
-				},
-			{
-			type: 'number',
-			name: 'inches',
-			message: 'How many inches in your height?'
-			},
-			{
-			type: 'number',
-			name: 'weight',
-			message: 'How much is your weight in pounds?'
-			}
-		];
-		const bmiValues = await prompts(bmiPrompts);
-		console.log(bmi(bmiValues.feet, bmiValues.inches, bmiValues.weight));
+					message: 'How many feet in your height?' },
+				{ type: 'number',
+					name: 'inches',
+					message: 'How many inches in your height?' },
+				{ type: 'number',
+					name: 'weight',
+					message: 'How much is your weight in pounds?' }];
+			const bmiValues = await prompts(bmiPrompts);
+			var vals = bmi(bmiValues.feet, bmiValues.inches, bmiValues.weight);
+			var bodyMass = new BMI();
+			bodyMass.code = "BMI";
+			bodyMass.inputs = {
+				height_feet: bmiValues.feet,
+				height_inches: bmiValues.inches,
+				weight: bmiValues.weight };
+			bodyMass.outputs = {
+				bmi_index: vals.number,
+				bmi_classification: vals.category };
+			bodyMass.created_at = Date.now();
+
+			bodyMass.save(function(err) {
+				if(err) {
+					throw err;
+				}
+			});
+			console.log('Category: ' + vals.category + ' BMI Index: ' + vals.number);
 		} else if (response.choice === "E" || response.choice === "e") {
 		console.log('Beginning Email Verifier');
 		const emailPrompt = await prompts({
@@ -135,6 +178,8 @@ console.log('Application also listening on port ' + port);
 		} else if (response.choice === "Q" || response.choice === 'q') {
 		console.log('Quitting program...');
 		console.log('Server shutting down...');
+		console.log('Database connection shutting down...')
+		mongoose.connection.close();
 		server.close();
 		return;
 		} else {

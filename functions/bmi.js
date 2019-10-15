@@ -17,7 +17,10 @@ const bmi = (feet, inches, weight) => {
         bmiCategory = 'NORMAL';
     }
 
-    return 'Category: ' + bmiCategory + ', BMI: ' + dividedAnswer;
+    return {
+        category: bmiCategory,
+        number: dividedAnswer
+    };
 };
 
 module.exports = bmi;

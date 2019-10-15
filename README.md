@@ -31,6 +31,13 @@ If you do not have the correct version of Node, go [here](https://www.hostingadv
 After installation of correct NodeJS and npm versions, proceed to the root directory of the project and run `npm i` to retrieve all necessary dependencies.
 
 ## Execution
+
+### Local
+To execute the program locally, navigate to the root directory and run `node index.js`.
+ - Once application has started you can use the console to answer the prompts questions and get the necessary calculations for your options.
+ - Using the console will also store all of your inputs and outputs into the database as well.
+ - The application can be used using web API as well which can be found on `localhost:5000`.
+
 To execute the program itself, at the root directory run `node index.js` and continue to answer the prompts on the console.
 
 To execute the test suite, run `npm test` at the root project folder and Jest should begin running with coverage.
