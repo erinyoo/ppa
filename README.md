@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/erinyoo/ppa.svg?branch=master)](https://travis.ci.org/erinyoo/ppa)
 # Professional Practice Assignment
 ## By Erin Yoo
 Using previously written code/functions from PPA#1 to store inputs and outputs in MongoDB which is spun up using Docker. Then usage of TravisCI to build personal continuous integration pipeline with build and test phases.
+
+
 
 ## Functions
 These functions were implemented in PPA#1, adding a few functionalities to BMI and Shortest Distance.
