@@ -1,7 +1,7 @@
 {
   "name": "ppa1",
   "version": "1.0.0",
-  "description": "Professional Practice Assignment #1 for Unit Testing and T/BDD",
+  "description": "Professional Practice Assignment #2",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erinyoo/ppa1.git"
+    "url": "git+https://github.com/erinyoo/ppa.git"
   },
   "author": "Erin Yoo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/erinyoo/ppa1/issues"
+    "url": "https://github.com/erinyoo/ppa/issues"
   },
   "homepage": "https://github.com/erinyoo/ppa1#readme",
   "devDependencies": {
@@ -30,10 +30,10 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "functions/bmi.js",
-      "functions/emailverifier.js",
-      "functions/retirement.js",
-      "functions/shortestdistance.js"
+      "src/functions/bmi.js",
+      "src/functions/emailverifier.js",
+      "src/functions/retirement.js",
+      "src/functions/shortestdistance.js"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
