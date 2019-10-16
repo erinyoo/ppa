@@ -1,19 +1,23 @@
+// Functions
 var bmi = require('./functions/bmi'),
 	emailVerifier = require('./functions/emailverifier'),
 	retirement = require('./functions/retirement'),
 	shortestDistance = require('./functions/shortestdistance');
-
+// Dependencies
 var express = require('express'),
 	prompts = require('prompts'),
 	mongoose = require('mongoose');
-
+// Variables
 var port = 5000,
 	app = express();
-
+// Routes
 var BMIRoutes = require('./src/routes/BMIRoutes.js'),
 	Distance = require('./src/routes/DistanceRoutes.js');
 
-mongoose.connect("mongodb://0.0.0.0:27017/ppa", { useUnifiedTopology: true, useNewUrlParser: true });
+async function startDB() {
+	mongoose.connect("mongodb://0.0.0.0:27017/ppa", { useUnifiedTopology: true, useNewUrlParser: true });
+}
+startDB().then(console.log('Database is connected'));
 
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/main.html');
@@ -31,6 +35,7 @@ startServer().then(console.log('Server is running on port ' + port));
 console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
 console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\nS - Shortest Distance Calculator\nQ - Exit application');
 
+// Console application
 (async () => {
   	while (true) {
 		const response = await prompts({
@@ -40,7 +45,7 @@ console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\n
 		});
 		if(response.choice === "B" || response.choice === "b") {
 			BMI.find().exec(function(err, docs) {
-				console.log('\n' + docs + '\r');
+				found = docs;
 			});
 			console.log('Beginning BMI Calculator');
 			const bmiPrompts = [
