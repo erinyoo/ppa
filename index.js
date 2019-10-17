@@ -1,8 +1,8 @@
 // Functions
-var bmi = require('./functions/bmi'),
-	emailVerifier = require('./functions/emailverifier'),
-	retirement = require('./functions/retirement'),
-	shortestDistance = require('./functions/shortestdistance');
+var bmi = require('./src/functions/bmi'),
+	emailVerifier = require('./src/functions/emailverifier'),
+	retirement = require('./src/functions/retirement'),
+	shortestDistance = require('./src/functions/shortestdistance');
 // Dependencies
 var express = require('express'),
 	prompts = require('prompts'),
@@ -12,7 +12,10 @@ var port = 5000,
 	app = express();
 // Routes
 var BMIRoutes = require('./src/routes/BMIRoutes.js'),
-	Distance = require('./src/routes/DistanceRoutes.js');
+	DistanceRoutes = require('./src/routes/DistanceRoutes.js');
+// Models
+var BMI = require('./src/models/BMI.js'),
+	Distance = require('./src/models/Distance.js');
 
 async function startDB() {
 	mongoose.connect("mongodb://0.0.0.0:27017/ppa", { useUnifiedTopology: true, useNewUrlParser: true });
@@ -44,8 +47,8 @@ console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\n
 			message: 'What function would you like to execute?'
 		});
 		if(response.choice === "B" || response.choice === "b") {
-			BMI.find().exec(function(err, docs) {
-				found = docs;
+			BMI.find().exec(function (err, docs) {
+				console.log('\n\r' + docs + '\r\n\nBegin typing the feet in height\n');
 			});
 			console.log('Beginning BMI Calculator');
 			const bmiPrompts = [
@@ -111,8 +114,8 @@ console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\n
 				console.log('Goal met at age ' + age);
 			}
 		} else if (response.choice === "S" || response.choice === "s") {
-			BMI.find().exec(function(err, docs) {
-				console.log('\n' + docs + '\r');
+			Distance.find().exec(function (err, docs) {
+				console.log('\n\r' + docs + '\r\n\nBegin typing the x value of first coordinate\n');
 			});
 			console.log('Beginning Shortest Distance Calculator');
 			const coordinatePrompts = [
