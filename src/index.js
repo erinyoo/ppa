@@ -1,39 +1,16 @@
 // Functions
-var bmi = require('./src/functions/bmi'),
-	emailVerifier = require('./src/functions/emailverifier'),
-	retirement = require('./src/functions/retirement'),
-	shortestDistance = require('./src/functions/shortestdistance');
+var bmi = require('./functions/bmi'),
+	emailVerifier = require('./functions/emailverifier'),
+	retirement = require('./functions/retirement'),
+	shortestDistance = require('./functions/shortestdistance');
 // Dependencies
-var express = require('express'),
-	prompts = require('prompts'),
+var prompts = require('prompts'),
 	mongoose = require('mongoose');
-// Variables
-var port = 5000,
-	app = express();
-// Routes
-var BMIRoutes = require('./src/routes/BMIRoutes.js'),
-	DistanceRoutes = require('./src/routes/DistanceRoutes.js');
 // Models
-var BMI = require('./src/models/BMI.js'),
-	Distance = require('./src/models/Distance.js');
+var BMI = require('./models/bmi.js'),
+	Distance = require('./models/distance.js');
 
-async function startDB() {
-	mongoose.connect("mongodb://0.0.0.0:27017/ppa", { useUnifiedTopology: true, useNewUrlParser: true });
-}
-startDB().then(console.log('Database is connected'));
-
-app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/main.html');
-});
-
-app.use('/bmi', BMIRoutes);
-app.use('/distance', DistanceRoutes);
-
-var server;
-async function startServer() {
-	server = app.listen(port);
-}
-startServer().then(console.log('Server is running on port ' + port));
+var server = require('./server.js');
 
 console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
 console.log('B - BMI Calculator\nE - Email Verifier\nR - Retirement Calculator\nS - Shortest Distance Calculator\nQ - Exit application');
