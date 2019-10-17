@@ -1,4 +1,4 @@
-const emailVerifier = require('../functions/emailverifier');
+const emailVerifier = require('../../functions/emailverifier');
 
 describe('verifies string input is a valid email address', function() {
 
