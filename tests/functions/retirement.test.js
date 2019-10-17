@@ -1,4 +1,4 @@
-const retirement = require('../../functions/retirement');
+const retirement = require('../../src/functions/retirement');
 
 describe('calculates the age at which retirement is reached', function() {
   

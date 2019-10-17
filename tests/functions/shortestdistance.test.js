@@ -1,4 +1,4 @@
-const shortestDistance = require('../../functions/shortestdistance');
+const shortestDistance = require('../../src/functions/shortestdistance');
 
 describe('calculates distance between two (x, y) coordinates', function() {
     it('should return correct whole number distance using distance formula', () => {
