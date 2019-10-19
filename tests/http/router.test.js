@@ -1,27 +1,29 @@
-const request = require('supertest')
-var mongodb = require('mongo-mock');
-var MongoClient = mongodb.MongoClient;
-MongoClient.persist = 'mongo.js';
+console.log('Database must be running in Docker for tests to pass');
 
-var url = 'mongodb://0.0.0.0:27017/ppDB';
+process.env.NODE_ENV = 'test';
+var chai = require('chai');
+var chaiHTTP = require('chai-http');
+var server = require('../../src/server.js');
+var mongoose = require('mongoose');
+chai.should();
 
-describe('GET endpoints', () => {
-    let server;
-    beforeAll(done => {
-        server = require('../../src/server.js');
-        MongoClient.connect(url, function(err, db) {
-            if (err) throw err;
-        })
-        done();
-    })
+chai.use(chaiHTTP);
 
-    it('should send a GET to bmi', async () => {
-        const response = await request(server).get('/bmi')
-        expect(response.statusCode).toEqual(200)
-    })
+describe('GET /bmi', () => {
+    it('it should get all the BMI values', (done) => {
+        chai.request(server).get('/bmi').end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+            done();
+        });
+    });
 
-    afterAll(done => {
-        MongoClient
-        server.close(done);
-    })
-})
+    after(() => {
+        mongoose.connection.close(() => {
+            console.log('Database connection closed');
+        });
+        server.close(() => {
+            console.log('Server stopped listening');
+        });
+    });
+});

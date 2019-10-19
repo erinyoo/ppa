@@ -3,9 +3,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 var port = 5000,
-    app = express();
+    app = express(),
+    config = require('../config.js');
     
-mongoose.connect('mongodb://0.0.0.0:27017/ppaDB', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(config[app.settings.env], { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true} ));
