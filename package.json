@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "istanbul cover mocha tests/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -20,32 +20,15 @@
   },
   "homepage": "https://github.com/erinyoo/ppa1#readme",
   "devDependencies": {
-    "jest": "^24.9.0"
+    "babel": "^6.23.0",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.2.2"
   },
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.4",
     "prompts": "^2.2.1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/functions/bmi.js",
-      "src/functions/emailverifier.js",
-      "src/functions/retirement.js",
-      "src/functions/shortestdistance.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/src/index.js",
-      "/node_modules/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 85,
-        "branches": 85,
-        "functions": 85,
-        "lines": 85
-      }
-    }
   }
 }

@@ -1,23 +1,24 @@
-const shortestDistance = require('../../src/functions/shortestdistance');
+let chai = require('chai');
+var expect = chai.expect;
 
-describe('calculates distance between two (x, y) coordinates', function() {
-    it('should return correct whole number distance using distance formula', () => {
-        const x1 = 2;
-        const y1 = 5;
-        const x2 = 10;
-        const y2 = 20;
-        expect(shortestDistance(x1, y1, x2, y2)).toBe(17);
+let shortestDistance = require('../../src/functions/shortestdistance');
+
+describe('Shortest Distance Unit Tests', () => {
+    const x1Whole = 2;
+    const y1Whole = 5;
+    const x2Whole = 10;
+    const y2Whole = 20;
+
+    const x1Decimal = 2;
+    const y1Decimal = 5;
+    const x2Decimal = 10;
+    const y2Decimal = 20;
+
+	it('should correctly calculate whole number distance', () => {
+		expect(shortestDistance(x1Whole, y1Whole, x2Whole, y2Whole)).to.equal(17);
     });
 
-    it('should return correct decimal distance using distance formula', () => {
-        const x1 = 2.4;
-        const y1 = 5.2;
-        const x2 = 10.1;
-        const y2 = 20.5;
-        expect(shortestDistance(x1, y1, x2, y2)).toBeGreaterThan(17);
+    it('should correctly calculate decimal number distance', () => {
+		expect(shortestDistance(x1Decimal, y1Decimal, x2Decimal, y2Decimal)).to.equal(17);
     });
-});
-
-test('Jest framework runs correctly', () => {
-  expect(true).toBeTruthy();
 });

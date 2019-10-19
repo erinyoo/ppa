@@ -41,7 +41,7 @@ Clone this repository onto local computer.
 1. Install all necessary dependencies by running this command at the root directory
   - `npm install`
 2. Run the command to get the Docker container with the MongoDB image up
-  - `docker run -d -p 27017-27019:27017-27019 mongo`
+  - `docker run -d -p 27017:27017 --name ppaDB mongo`
   - Docker should now be running with the mongo image
   - You can check by running the command `docker ps -a` to see all your Docker containers
 3. Now run this command to start the server and begin making requests or inputting into the console

@@ -1,42 +1,47 @@
-const bmi = require('../../src/functions/bmi');
+let chai = require('chai');
+var assert = chai.assert;
+var expect = chai.expect;
 
-describe('calculates correct BMI and BMI category', function() {
+let bmi = require('../../src/functions/bmi');
+
+describe('BMI Unit Tests', () => {
+	const feet = 5;
+	const inches = 8;
+	const generalWeight = 200;
+	const underweight = 100;
+	const normalWeight = 150;
+	const overweight = 185;
+	const obese = 300;
+	let BMI;
+
 	it('should output the correct BMI value', () => {
-		const feet = 5;
-		const inches = 8;
-		const weight = 200;
-		expect(bmi(feet, inches, weight).number).toBe(31.14186851211072);
+		BMI = bmi(feet, inches, generalWeight);
+		expect(BMI.number).to.equal(31.14186851211072);
 	});
 
-	it('should output UNDERWEIGHT for BMI value less than or equal to 18.5', () => {
-		const feet = 5;
-		const inches = 8;
-		const weight = 100;
-		expect(bmi(feet, inches, weight).category).toBe('UNDERWEIGHT');
+	it('should give UNDERWEIGHT category for value less than 18.5', () => {
+		BMI = bmi(feet, inches, underweight);
+		assert.isAtMost(BMI.number, 18.5);
+		expect(BMI.category).to.equal('UNDERWEIGHT');
 	});
 
-	it('should output NORMAL for BMI value in range of 18.6 to 24.9', () => {
-		const feet = 5;
-		const inches = 8;
-		const weight = 150;
-		expect(bmi(feet, inches, weight).category).toBe('NORMAL');
+	it('should give NORMAL category for value between 18.6 to 24.9', () => {
+		BMI = bmi(feet, inches, normalWeight);
+		assert.isAbove(BMI.number, 18.5);
+		assert.isAtMost(BMI.number, 24.9);
+		expect(BMI.category).to.equal('NORMAL');
 	});
 
-	it('should output OVERWEIGHT for BMI value in range of 25 to 29.9', () => {
-		const feet = 5;
-		const inches = 8;
-		const weight = 185;
-		expect(bmi(feet, inches, weight).category).toBe('OVERWEIGHT');
+	it('should give OVERWEIGHT category for value between 25 to 29.9', () => {
+		BMI = bmi(feet, inches, overweight);
+		assert.isAbove(BMI.number, 24.9);
+		assert.isAtMost(BMI.number, 29.9);
+		expect(BMI.category).to.equal('OVERWEIGHT');
 	});
 
-	it('should output OBESE for BMI value greater than or equal to 30', () => {
-		const feet = 5;
-		const inches = 8;
-		const weight = 300;
-		expect(bmi(feet, inches, weight).category).toBe('OBESE');
+	it('should give OBESE category for value greater than or equal to 30', () => {
+		BMI = bmi(feet, inches, obese);
+		assert.isAbove(BMI.number, 29.9);
+		expect(BMI.category).to.equal('OBESE');
 	});
-});
-
-test('Jest framework runs correctly', () => {
-  expect(true).toBeTruthy();
 });
