@@ -3,8 +3,11 @@ language: node_js
 node_js:
   - "node"
 
-script:
-  - npm install
-
-after_script:
-  - npm test
+jobs:
+  include:
+    - stage: Build
+      script: npm install
+    - stage: Function Unit Tests
+      script: nyc mocha tests/**/*.js
+    - stage: Database & API Tests
+      script: docker run -d -p 37017:27017 --name test mongo && mocha tests/database/*.js && mocha tests/http/*.js
