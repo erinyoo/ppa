@@ -73,7 +73,7 @@ After all requirements are met, **clone this git repository**.
   2. Navigate to the root directory of the project which is under the `ppa` folder. Then run the following command to install all dependencies:
      - `npm install`
   3. Run the following command next to get the Docker container with MongoDB up and running
-     - `docker run -d -p 27017:27017 -- name ppaDB mongo`
+     - `docker run -d -p 27017:27017 --name ppaDB mongo`
      - Docker should be up and running, you can check this by running the `docker ps -a` to see if it has been created.
   4. Now to start the server and to make requests through Postman or console execute:
      - `node src/index.js`
@@ -81,7 +81,7 @@ After all requirements are met, **clone this git repository**.
 
 ### Test Execution
   1. Before running any tests on your local machine, spin and run a new Docker container with a new MongoDB instance for testing:
-     - `docker run -d -p 37017:27017 -- name test mongo`
+     - `docker run -d -p 37017:27017 --name test mongo`
   2. Before running all tests in the suite, ensure that you have closed off your local CLI server by gracefully exiting the program with the `Q` or `q` inputs.
   3. Once all completed, run all the tests by running at the root `ppa` folder:
      - `npm test`
