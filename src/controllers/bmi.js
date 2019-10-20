@@ -2,10 +2,14 @@ var BMI = require('../models/bmi.js');
 var bmi = require('../functions/bmi.js');
 
 exports.getBMI = function(req, res) {
-    BMI.find().exec(function(err, bmis) {
+    BMI.find({}, function(err, bmis) {
         if(err) res.status(400).send(err);
-        else res.status(200).send(bmis);
-    });
+        else res.send(bmis);
+    })
+    // BMI.find().exec(function(err, bmis) {
+    //     if(err) res.status(400).send(err);
+    //     else res.send(bmis);
+    // });
 };
 
 exports.sendBMI = function(req, res) {

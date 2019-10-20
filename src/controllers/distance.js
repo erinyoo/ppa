@@ -1,5 +1,5 @@
 var Distance = require('../models/distance.js');
-var distance = require('../functions/distance.js');
+var distance = require('../functions/shortestdistance.js');
 
 
 exports.getDistance = function(req, res) {
