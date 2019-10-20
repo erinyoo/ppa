@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/erinyoo/ppa.svg?branch=master)](https://travis.ci.org/erinyoo/ppa)
+[![Build Status](https://travis-ci.org/erinyoo/ppa.svg?branch=master)](https://travis-ci.org/erinyoo/ppa)
 # Professional Practice Assignment
 ## By Erin Yoo
 Using previously written code from PPA#1 to create a full-blown web-application. Application stores certain function inputs and outputs into local MongoDB cluster that is spun up using Docker. Usage of TravisCI for continuous integration.
