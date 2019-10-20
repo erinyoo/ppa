@@ -8,9 +8,9 @@ Using previously written code from PPA#1 to create a full-blown web-application.
  - [Routes](https://github.com/erinyoo/ppa#routes) (endpoints to hit)
  - [Setup](https://github.com/erinyoo/ppa#setup) (how to set up local environment to run server and tests)
  - [Execution](https://github.com/erinyoo/ppa#execution)
-   - [Local CLI/Browser](https://github.com/erinyoo#local) (execute program in CLI and see main in browser)
-   - [Test Execution](https://github.com/erinyoo#tests) (executing all the tests)
-- [Docker & Error Handling](https://github.com/erinyoo#) (common errors and fixes, extra info on Docker)
+   - [Local CLI/Browser](https://github.com/erinyoo/ppa#local-clibrowser) (execute program in CLI and see main in browser)
+   - [Test Execution](https://github.com/erinyoo/ppa#test-execution) (executing all the tests)
+- [Docker & Error Handling](https://github.com/erinyoo/ppa#docker--error-handling) (common errors and fixes, extra info on Docker)
 
 ## Functions
 These functions were implemented in PPA#1, adding a few functionalities to BMI and Shortest Distance.
