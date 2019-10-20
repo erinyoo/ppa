@@ -8,6 +8,6 @@ jobs:
     - stage: Build
       script: npm install
     - stage: Function Unit Tests
-      script: nyc mocha tests/**/*.js
+      script: nyc mocha tests/functions/*.js
     - stage: Database & API Tests
       script: docker run -d -p 37017:27017 --name test mongo && mocha tests/database/*.js && mocha tests/http/*.js
