@@ -1,0 +1,70 @@
+{
+    "all": {
+        "success": {
+            "res": {
+                "statusCode": 200,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "x1": 5,
+                    "y1": 3,
+                    "x2": 1,
+                    "y2": 10
+                },
+                "outputs": {
+                    "distance": 8.06225774829855
+                },
+                "_id": "5dabd9641148d12cd3641249",
+                "created_at": "2019-10-20T03:49:56.179Z",
+                "__v": 0
+            }
+        },
+        "fail": {
+            "res": {
+                "statusCode": 400,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "x1": "ValidationError",
+                    "y1": 3,
+                    "x2": 1,
+                    "y2": 10
+                },
+                "outputs": {
+                    "distance": 8.06225774829855
+                },
+                "_id": "5dabd9641148d12cd3641249",
+                "created_at": "2019-10-20T03:49:56.179Z",
+                "__v": 0
+            }
+        },
+        "added": {
+            "res": {
+                "statusCode": 200,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "x1": 5,
+                    "y1": 3,
+                    "x2": 1,
+                    "y2": 10
+                },
+                "outputs": {
+                    "distance": 8.06225774829855
+                },
+                "_id": "5dabd9641148d12cd3641249",
+                "created_at": "2019-10-20T03:49:56.179Z",
+                "__v": 0
+            }
+        }
+    }
+}
