@@ -21,6 +21,50 @@
                 "created_at": "2019-10-20T03:46:13.239Z",
                 "__v": 0
             }
+        },
+        "fail": {
+            "res": {
+                "statusCode": 400,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "height_feet": "ValidationError",
+                    "height_inches": 3,
+                    "weight": 120
+                },
+                "outputs": {
+                    "bmi_index": 21.76870748299319,
+                    "bmi_classification": "NORMAL"
+                },
+                "_id": "5dabd8850e45172b03d20b4a",
+                "created_at": "2019-10-20T03:46:13.239Z",
+                "__v": 0
+            }
+        },
+        "added": {
+            "res": {
+                "statusCode": 200,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "height_feet": 5,
+                    "height_inches": 1,
+                    "weight": 150
+                },
+                "outputs": {
+                    "bmi_index": 29.024455791453903,
+                    "bmi_classification": "OVERWEIGHT"
+                },
+                "_id": "5dac13b2e7f15f0b44474b98",
+                "created_at": "2019-10-20T07:58:42.450Z",
+                "__v": 0
+            }
         }
     }
 }

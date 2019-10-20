@@ -14,7 +14,6 @@ describe('API Endpoint Tests', () => {
         chai.request(server).get('/bmi').end((err, res) => {
             if(err) throw err;
             res.should.have.status(200);
-            res.body.should.be.a('array');
             done();
         });
     });
@@ -29,7 +28,6 @@ describe('API Endpoint Tests', () => {
     });
 
     it('POST /bmi should have 200 status and create BMI', (done) => {
-        
         const bmi = {
             feet: 5,
             inches: 7,
@@ -39,7 +37,6 @@ describe('API Endpoint Tests', () => {
         chai.request(server).post('/bmi').send(bmi).end((err, res) => {
             if(err) throw err;
             res.should.have.status(200);
-            res.body.should.be.a('object');
             res.body.should.have.property('inputs');
             res.body.should.have.property('outputs');
             res.body.should.have.property('created_at');
