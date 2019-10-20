@@ -9,11 +9,59 @@ chai.should();
 
 chai.use(chaiHTTP);
 
-describe('GET /bmi', () => {
-    it('it should get all the BMI values', (done) => {
+describe('API Endpoint Tests', () => {
+    it('GET /bmi should have 200 status and return array', (done) => {
         chai.request(server).get('/bmi').end((err, res) => {
+            if(err) throw err;
             res.should.have.status(200);
             res.body.should.be.a('array');
+            done();
+        });
+    });
+
+    it('GET /distance should have 200 status and return array', (done) => {
+        chai.request(server).get('/distance').end((err, res) => {
+            if(err) throw err;
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+            done();
+        });
+    });
+
+    it('POST /bmi should have 200 status and create BMI', (done) => {
+        
+        const bmi = {
+            feet: 5,
+            inches: 7,
+            weight: 130
+        };
+
+        chai.request(server).post('/bmi').send(bmi).end((err, res) => {
+            if(err) throw err;
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('inputs');
+            res.body.should.have.property('outputs');
+            res.body.should.have.property('created_at');
+            done();
+        });
+    });
+
+    it('POST /distance should have 200 status and create Distance', (done) => {
+        const coordinates = {
+            x1: 5,
+            y1: 4,
+            x2: 10,
+            y2: 5
+        };
+
+        chai.request(server).post('/distance').send(coordinates).end((err, res) => {
+            if(err) throw err;
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('inputs');
+            res.body.should.have.property('outputs');
+            res.body.should.have.property('created_at');
             done();
         });
     });

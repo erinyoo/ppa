@@ -1,0 +1,26 @@
+{
+    "all": {
+        "success": {
+            "res": {
+                "statusCode": 200,
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "height_feet": 5,
+                    "height_inches": 3,
+                    "weight": 120
+                },
+                "outputs": {
+                    "bmi_index": 21.76870748299319,
+                    "bmi_classification": "NORMAL"
+                },
+                "_id": "5dabd8850e45172b03d20b4a",
+                "created_at": "2019-10-20T03:46:13.239Z",
+                "__v": 0
+            }
+        }
+    }
+}

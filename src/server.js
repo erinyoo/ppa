@@ -1,6 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var bmiRouter = require('./routes/bmi.js');
+var distanceRouter = require('./routes/distance.js');
 
 var port = 5000,
     app = express(),
@@ -16,6 +18,9 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/main.html');
 });
-require("./routes/router.js")(app);
+
+app.use('/bmi', bmiRouter);
+
+app.use('/distance', distanceRouter);
 
 module.exports = app.listen(port, console.log('Listening on port ' + port));

@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "istanbul cover mocha tests/**/*.js"
+    "test": "nyc mocha tests/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,13 +23,21 @@
     "babel": "^6.23.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^6.2.2"
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.4",
     "prompts": "^2.2.1"
+  },
+  "nyc": {
+    "all": false,
+    "include": ["src/functions/*.js"],
+    "exclude": [
+      "src/models/*.js",
+      "src/routes/*.js"
+    ]
   }
 }

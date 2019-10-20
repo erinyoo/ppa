@@ -10,6 +10,8 @@ var prompts = require('prompts'),
 var BMI = require('./models/bmi.js'),
 	Distance = require('./models/distance.js');
 
+process.env.NODE_ENV = 'official';
+
 var server = require('./server.js');
 
 console.log('Hello! Please enter the letter for the function you\'d like to execute from the menu provided.');
