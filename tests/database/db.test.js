@@ -1,16 +1,11 @@
 var chai = require('chai');
 var expect = chai.expect;
-var request = require('request');
 var sinon = require('sinon');
-var should = chai.should();
 
 process.env.NODE_ENV = 'test';
 
 var bmiController = require('../../src/controllers/bmi.js');
-var server = require('../../src/server.js');
-
 var bmiFix = require('./fixtures/bmi.json');
-
 var BMI = require('../../src/models/bmi.js');
 var Distance = require('../../src/models/distance.js');
 

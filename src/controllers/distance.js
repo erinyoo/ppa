@@ -3,10 +3,10 @@ var distance = require('../functions/shortestdistance.js');
 
 
 exports.getDistance = function(req, res) {
-    Distance.find().sort('code').exec(function(err, distances) {
+    Distance.find({}, function(err, distances) {
         if(err) res.status(400).send(err);
-        else res.status(200).send(distances);
-    });
+        else res.send(distances);
+    })
 };
 
 exports.sendDistance = function(req, res) {

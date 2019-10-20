@@ -6,10 +6,6 @@ exports.getBMI = function(req, res) {
         if(err) res.status(400).send(err);
         else res.send(bmis);
     })
-    // BMI.find().exec(function(err, bmis) {
-    //     if(err) res.status(400).send(err);
-    //     else res.send(bmis);
-    // });
 };
 
 exports.sendBMI = function(req, res) {

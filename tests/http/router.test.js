@@ -22,7 +22,6 @@ describe('API Endpoint Tests', () => {
         chai.request(server).get('/distance').end((err, res) => {
             if(err) throw err;
             res.should.have.status(200);
-            res.body.should.be.a('array');
             done();
         });
     });
@@ -55,7 +54,6 @@ describe('API Endpoint Tests', () => {
         chai.request(server).post('/distance').send(coordinates).end((err, res) => {
             if(err) throw err;
             res.should.have.status(200);
-            res.body.should.be.a('object');
             res.body.should.have.property('inputs');
             res.body.should.have.property('outputs');
             res.body.should.have.property('created_at');
